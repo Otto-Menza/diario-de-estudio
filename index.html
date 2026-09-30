@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diario de Estudio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="contenedor">
+
+    <!-- Cabecera -->
+    <header class="cabecera">
+      <h1>Diario de Estudio</h1>
+      <p class="subtitulo">Registra tus sesiones y mantén tu racha 🔥</p>
+    </header>
+
+    <!-- Racha actual -->
+    <section class="racha" aria-label="Racha actual">
+      <span class="racha-numero" id="rachaNumero">0</span>
+      <span class="racha-texto" id="rachaTexto">días de racha 🔥</span>
+      <p class="mejor-racha" id="mejorRacha">Mejor racha: 0 días 🏆</p>
+      <p class="semana-minutos" id="semanaMinutos">Esta semana: 0 min 📚</p>
+    </section>
+
+    <!-- Formulario para nueva sesión -->
+    <section class="tarjeta">
+      <h2>Registrar sesión</h2>
+      <form id="formulario" novalidate>
+        <div class="campo">
+          <label for="fecha">Fecha</label>
+          <input type="date" id="fecha" required>
+        </div>
+        <div class="campo">
+          <label for="tema">Tema</label>
+          <input type="text" id="tema" placeholder="Ej. Matemáticas" maxlength="100" required>
+        </div>
+        <div class="campo">
+          <label for="minutos">Minutos</label>
+          <input type="number" id="minutos" min="1" max="600" placeholder="Ej. 30" required>
+        </div>
+        <button type="submit" class="boton">Guardar sesión</button>
+        <p class="error" id="error" role="alert"></p>
+      </form>
+    </section>
+
+    <!-- Lista de sesiones -->
+    <section class="tarjeta">
+      <h2>Historial</h2>
+      <p class="vacio" id="vacio">Aún no hay sesiones registradas. ¡Empieza hoy!</p>
+      <ul class="lista" id="lista"></ul>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
