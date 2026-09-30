@@ -7,8 +7,8 @@
 
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  background: #f4f5f7;
-  color: #1f2933;
+  background: #121212;
+  color: #f9fafb;
   line-height: 1.5;
   padding: 16px;
 }
@@ -18,7 +18,7 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 /* ===== Cabecera ===== */
@@ -28,89 +28,84 @@ body {
 }
 
 .cabecera h1 {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .subtitulo {
-  color: #6b7280;
-  font-size: 0.95rem;
+  color: #9ca3af;
+  font-size: 0.9rem;
 }
 
 /* ===== Racha ===== */
 .racha {
-  background: linear-gradient(135deg, #ff8a00, #ff3d00);
-  color: #fff;
-  border-radius: 16px;
-  padding: 24px 16px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(255, 90, 0, 0.25);
+  padding: 28px 16px;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.3);
 }
 
 .racha-numero {
   display: block;
-  font-size: 3.5rem;
+  font-size: 4rem;
   font-weight: 800;
   line-height: 1.1;
+  color: #f59e0b;
 }
 
 .racha-texto {
-  font-size: 1.1rem;
+  font-size: 1rem;
+  color: #d1d5db;
 }
 
-.mejor-racha {
-  font-size: 0.95rem;
-  opacity: 0.9;
-  margin-top: 4px;
-}
-
-.semana-minutos {
-  font-size: 0.95rem;
-  opacity: 0.9;
-  margin-top: 4px;
-}
-
+.mejor-racha,
+.semana-minutos,
 .mes-dias {
-  font-size: 0.95rem;
-  opacity: 0.9;
-  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin-top: 6px;
 }
 
 /* ===== Tarjetas ===== */
 .tarjeta {
-  background: #fff;
-  border-radius: 16px;
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .tarjeta h2 {
-  font-size: 1.1rem;
-  margin-bottom: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: #f9fafb;
 }
 
 /* ===== Formulario ===== */
 .campo {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .campo label {
   display: block;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  color: #d1d5db;
 }
 
 .campo input {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: #121212;
+  color: #f9fafb;
   font-size: 1rem;
   font-family: inherit;
 }
 
 .campo input:focus {
-  outline: 2px solid #ff8a00;
+  outline: 2px solid #f59e0b;
   border-color: transparent;
 }
 
@@ -118,9 +113,9 @@ body {
   width: 100%;
   padding: 12px;
   border: none;
-  border-radius: 10px;
-  background: #ff6d00;
-  color: #fff;
+  border-radius: 8px;
+  background: #f59e0b;
+  color: #121212;
   font-size: 1rem;
   font-weight: 700;
   font-family: inherit;
@@ -128,20 +123,20 @@ body {
 }
 
 .boton:hover {
-  background: #e66200;
+  background: #d97706;
 }
 
 .error {
-  color: #d32f2f;
-  font-size: 0.9rem;
+  color: #ef4444;
+  font-size: 0.85rem;
   margin-top: 8px;
   min-height: 1.2em;
 }
 
 /* ===== Lista de sesiones ===== */
 .vacio {
-  color: #6b7280;
-  font-size: 0.95rem;
+  color: #9ca3af;
+  font-size: 0.9rem;
   text-align: center;
   padding: 12px 0;
 }
@@ -159,17 +154,19 @@ body {
   align-items: center;
   gap: 8px;
   padding: 10px 12px;
-  background: #f9fafb;
-  border-radius: 10px;
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
 }
 
 .sesion-tema {
   font-weight: 600;
   word-break: break-word;
+  color: #f9fafb;
 }
 
 .sesion-detalle {
-  color: #6b7280;
-  font-size: 0.85rem;
+  color: #9ca3af;
+  font-size: 0.8rem;
   white-space: nowrap;
 }
