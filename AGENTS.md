@@ -20,6 +20,7 @@ perderá sus sesiones.
 - Varias sesiones el mismo día cuentan como un solo día. Las fechas futuras no suman.
 - Mejor racha = la secuencia más larga de días consecutivos con sesión en todo el historial, excluyendo fechas futuras.
 - Semana = lunes a domingo (fecha local). Minutos semanales = suma de minutos de sesiones desde el lunes de esta semana hasta hoy.
+- Mes = mes actual (fecha local). Días del mes = días únicos con sesión en el mes actual.
 ## Forma de trabajar
 - Haz solo lo que se pide: no añadas funcionalidades por tu cuenta.
 - Cambios pequeños y enfocados; no reescribas lo que ya funciona.

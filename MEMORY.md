@@ -1,7 +1,7 @@
 # MEMORY.md
 
 ## Estado actual
-- Funcionalidad: registrar sesiones (fecha, tema, minutos), racha actual, mejor racha, minutos esta semana, historial.
+- Funcionalidad: registrar sesiones (fecha, tema, minutos), racha actual, mejor racha, minutos esta semana, días este mes, historial.
 - Todo en localStorage, sin build ni dependencias.
 
 ## Decisiones
@@ -10,6 +10,7 @@
 - Algoritmo de mejor racha: fechas únicas ordenadas, buscar secuencia más larga de días consecutivos.
 - Restricciones de entrada: fecha no futura, minutos 1-600, tema máx 100 caracteres. Validación doble: atributos HTML + submit.
 - Minutos semanales: semana empieza en lunes (getDay() ajustado). Suma desde lunes hasta hoy.
+- Días del mes: días únicos con sesión en el mes actual. Formato "sep: 5 días 📅".
 
 ## Errores a evitar
 - No usar toISOString() ni new Date("AAAA-MM-DD") para fechas (problemas UTC).

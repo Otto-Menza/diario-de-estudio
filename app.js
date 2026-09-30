@@ -16,6 +16,7 @@ const rachaNumero = document.getElementById("rachaNumero");
 const rachaTexto = document.getElementById("rachaTexto");
 const mejorRacha = document.getElementById("mejorRacha");
 const semanaMinutos = document.getElementById("semanaMinutos");
+const mesDias = document.getElementById("mesDias");
 const lista = document.getElementById("lista");
 const avisoVacio = document.getElementById("vacio");
 
@@ -142,6 +143,21 @@ function calcularMinutosSemana(sesiones) {
   return { total, inicioSemana, finSemana };
 }
 
+// Calcula los días únicos estudiados este mes (mes actual, fecha local).
+function calcularDiasMes(sesiones) {
+  const ahora = new Date();
+  const mesActual = String(ahora.getMonth() + 1).padStart(2, "0");
+  const anioActual = ahora.getFullYear();
+
+  const diasUnicos = new Set(
+    sesiones
+      .filter((s) => s.fecha.startsWith(`${anioActual}-${mesActual}`))
+      .map((s) => s.fecha)
+  );
+
+  return diasUnicos.size;
+}
+
 /* ---------- Pintar la interfaz ---------- */
 
 function pintarRacha(sesiones) {
@@ -162,6 +178,13 @@ function pintarMinutosSemana(sesiones) {
   const inicio = textoAFecha(inicioSemana).toLocaleDateString("es-ES", { day: "numeric", month: "short" });
   const fin = textoAFecha(finSemana).toLocaleDateString("es-ES", { day: "numeric", month: "short" });
   semanaMinutos.textContent = `Esta semana (${inicio}-${fin}): ${total} min 📚`;
+}
+
+function pintarDiasMes(sesiones) {
+  const dias = calcularDiasMes(sesiones);
+  const ahora = new Date();
+  const nombreMes = ahora.toLocaleDateString("es-ES", { month: "short" }).replace(".", "");
+  mesDias.textContent = `${nombreMes}: ${dias} días 📅`;
 }
 
 function pintarLista(sesiones) {
@@ -193,6 +216,7 @@ function pintarTodo() {
   pintarRacha(sesiones);
   pintarMejorRacha(sesiones);
   pintarMinutosSemana(sesiones);
+  pintarDiasMes(sesiones);
   pintarLista(sesiones);
 }
 
