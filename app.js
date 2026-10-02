@@ -158,6 +158,62 @@ function calcularDiasMes(sesiones) {
   return diasUnicos.size;
 }
 
+/* ---------- Mapa de calor ---------- */
+
+// Calcula los minutos totales por día de las últimas 8 semanas.
+// Devuelve un objeto { "AAAA-MM-DD": minutosTotales }.
+function obtenerMinutosPorDia(sesiones, hoy) {
+  const inicio = textoAFecha(hoy);
+  const inicioDate = new Date(inicio.getFullYear(), inicio.getMonth(), inicio.getDate() - 56);
+  const inicioTexto = fechaATexto(inicioDate);
+
+  const minutosPorDia = {};
+
+  for (const sesion of sesiones) {
+    if (sesion.fecha < inicioTexto || sesion.fecha > hoy) continue;
+    const minutos = Number(sesion.minutos);
+    if (!Number.isFinite(minutos) || minutos <= 0) continue;
+    minutosPorDia[sesion.fecha] = (minutosPorDia[sesion.fecha] || 0) + minutos;
+  }
+
+  return minutosPorDia;
+}
+
+// Calcula el nivel de verde (0-4) según los minutos estudiados.
+function calcularNivelVerde(minutos) {
+  if (minutos <= 0) return 0;
+  if (minutos <= 150) return 1;
+  if (minutos <= 300) return 2;
+  if (minutos <= 450) return 3;
+  return 4;
+}
+
+// Devuelve true si la fecha es posterior a hoy.
+function esDiaFuturo(fecha, hoy) {
+  return fecha > hoy;
+}
+
+// Genera un array de 56 fechas "AAAA-MM-DD" (8 semanas × 7 días) desde el lunes de hace 8 semanas hasta el domingo de la semana actual.
+function generarDiasMapa(hoy) {
+  const hoyDate = textoAFecha(hoy);
+  const diaSemana = hoyDate.getDay();
+  const diasDesdeLunes = diaSemana === 0 ? 6 : diaSemana - 1;
+
+  const lunesActual = new Date(hoyDate.getFullYear(), hoyDate.getMonth(), hoyDate.getDate());
+  lunesActual.setDate(lunesActual.getDate() - diasDesdeLunes);
+
+  const inicio = new Date(lunesActual.getFullYear(), lunesActual.getMonth(), lunesActual.getDate());
+  inicio.setDate(inicio.getDate() - 49);
+
+  const dias = [];
+  for (let i = 0; i < 56; i++) {
+    const cursor = new Date(inicio.getFullYear(), inicio.getMonth(), inicio.getDate() + i);
+    dias.push(fechaATexto(cursor));
+  }
+
+  return dias;
+}
+
 /* ---------- Pintar la interfaz ---------- */
 
 function pintarRacha(sesiones) {
@@ -211,12 +267,40 @@ function pintarLista(sesiones) {
   }
 }
 
+function pintarMapaCalor(sesiones) {
+  const mapaGrid = document.getElementById("mapaGrid");
+  const hoy = hoyComoTexto();
+  const minutosPorDia = obtenerMinutosPorDia(sesiones, hoy);
+  const dias = generarDiasMapa(hoy);
+
+  mapaGrid.innerHTML = "";
+
+  for (const dia of dias) {
+    const minutos = minutosPorDia[dia] || 0;
+    const futuro = esDiaFuturo(dia, hoy);
+    const nivel = futuro ? 0 : calcularNivelVerde(minutos);
+
+    const celda = document.createElement("div");
+    celda.className = futuro ? "celda futuro" : `celda nivel-${nivel}`;
+
+    if (!futuro) {
+      const tooltip = document.createElement("span");
+      tooltip.className = "tooltip";
+      tooltip.textContent = minutos > 0 ? `${minutos} min` : "Sin estudio";
+      celda.appendChild(tooltip);
+    }
+
+    mapaGrid.appendChild(celda);
+  }
+}
+
 function pintarTodo() {
   const sesiones = cargarSesiones();
   pintarRacha(sesiones);
   pintarMejorRacha(sesiones);
   pintarMinutosSemana(sesiones);
   pintarDiasMes(sesiones);
+  pintarMapaCalor(sesiones);
   pintarLista(sesiones);
 }
 

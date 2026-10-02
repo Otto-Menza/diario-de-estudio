@@ -170,3 +170,53 @@ body {
   font-size: 0.8rem;
   white-space: nowrap;
 }
+
+/* ===== Mapa de calor ===== */
+.mapa-calor {
+  position: relative;
+}
+
+.mapa-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.celda {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: #ebedf0;
+  position: relative;
+}
+
+.celda.nivel-1 { background: #9be9a8; }
+.celda.nivel-2 { background: #40c463; }
+.celda.nivel-3 { background: #30a14e; }
+.celda.nivel-4 { background: #216e39; }
+.celda.futuro { background: transparent; }
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e1e1e;
+  color: #f9fafb;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  display: none;
+}
+
+.celda:hover .tooltip {
+  display: block;
+}
+
+@media (hover: hover) {
+  .celda:hover .tooltip {
+    display: block;
+  }
+}

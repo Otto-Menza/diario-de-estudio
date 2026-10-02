@@ -31,6 +31,10 @@ perderá sus sesiones.
 - Mantenlo breve (máximo 20 lineas): resume o elimina lo que ya no apoprte.
 Si algo se convieerte en una regla permanente, propón moverlo a `AGENTS.md` en lugar de dejarlo en la memoria.
 - No guardes nunca datos sensibles (claves, tokens, datos personales).
+## Comandos
+- Tests:`node --test`
+## Reglas
+- Lee `docs/constitution.md` y la spec activa (`specs/NNN-*/`) antes de tocar código.
 ## Límites
 - ✅ Siempre: respetar las reglas de fechas y racha, mantener los textos en español.
 - ✅ Restricciones de entrada: fecha hoy o antes, minutos entre 1 y 600, tema máximo 100 caracteres.
@@ -38,5 +42,5 @@ Si algo se convieerte en una regla permanente, propón moverlo a `AGENTS.md` en 
 - ⚠️ Pregunta antes: crear archivos nuevos, cambiar el formato de los datos guardados.
 - 🚫 Nunca: añadir dependencias, frameworks o un paso de build.
 ## Verificación
-- No hay tests ni lint. Probar abriendo `index.html` en el navegador.
+- No hay tests automaticos, Déspues de cada cambio, verifica con el MCP de Chrome DevTools: abre `index.html`, prueba la funcionalidad, revisa la consola y comprueba la vista movil.
 - Para empezar de cero: DevTools → Application → Local Storage → borrar la clave `diario-estudio-sesiones`. 
